@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdQure-inspired Digital Marketing Site (Original)</title>
+  <meta name="description" content="A clean, modern front‑end template for a digital marketing agency. Original design, inspired by best practices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;         /* deep navy */
+      --bg-2:#0f1a33;       /* slightly lighter navy */
+      --text:#e7eefc;       /* very light text */
+      --muted:#a9b7d9;      /* muted text */
+      --brand:#ffd23f;      /* yellow accent */
+      --brand-2:#5eead4;    /* teal accent */
+      --card:#0f1830;       /* card bg */
+      --border:#1e2b4f;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --max: 1150px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text); background:
+        radial-gradient(1000px 600px at 110% -10%, rgba(94,234,212,.07), transparent 60%),
+        radial-gradient(900px 500px at -10% -10%, rgba(255,210,63,.08), transparent 60%),
+        radial-gradient(600px 400px at 50% 120%, rgba(94,234,212,.06), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin-inline:auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.9rem 1.2rem; background:var(--brand); color:#0f1220; border-radius:999px; font-weight:700; border:2px solid transparent; transition:.2s}
+    .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent; color:var(--text); border-color:var(--border)}
+    .badge{display:inline-block; padding:.35rem .62rem; border-radius:999px; background:rgba(255,210,63,.15); color:var(--brand); font-weight:700; letter-spacing:.02em; font-size:.84rem}
+
+    /* Header */
+    header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px); background:rgba(11,18,32,.6); border-bottom:1px solid rgba(255,255,255,.06); z-index:40}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .logo{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.2px}
+    .logo-mark{width:34px; height:34px; border-radius:9px; background:conic-gradient(from 210deg, var(--brand), #ffd23faa, var(--brand-2)); box-shadow:0 8px 20px rgba(255,210,63,.25)}
+    nav ul{display:flex; gap:1.2rem; list-style:none; padding:0; margin:0}
+    nav a{padding:.6rem .8rem; border-radius:10px; color:var(--muted)}
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .nav-cta{display:flex; gap:.6rem; align-items:center}
+    .mobile-toggle{display:none}
+
+    /* Hero */
+    .hero{padding:96px 0 64px; position:relative}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:42px; align-items:center}
+    .eyebrow{margin-bottom:10px}
+    h1{margin:0 0 14px; font-size:clamp(32px, 5vw, 56px); line-height:1.08; letter-spacing:-.02em}
+    .lead{color:var(--muted); font-size:clamp(16px, 1.4vw, 19px)}
+    .hero-cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius-lg); padding:22px; display:grid; grid-template-columns:64px 1fr; gap:16px}
+    .hero-card .icon{width:64px; height:64px; border-radius:16px; background:linear-gradient(135deg, rgba(255,210,63,.25), rgba(94,234,212,.25)); display:grid; place-items:center; font-size:28px}
+
+    /* Trust */
+    .trust{padding:18px 0 8px; color:var(--muted); font-size:.95rem}
+    .logos{display:grid; grid-template-columns:repeat(6,1fr); gap:22px; opacity:.8}
+    .logos img{filter:grayscale(100%) contrast(0.2) brightness(1.8); opacity:.9}
+
+    /* Services */
+    section{padding:72px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:28px}
+    .section-head h2{margin:0; font-size:clamp(24px, 3.4vw, 36px)}
+    .grid{display:grid; gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; transition:.25s}
+    .card:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
+    .kpi{font-size:28px; font-weight:800}
+    .kpi sub{font-size:13px; color:var(--muted); font-weight:600}
+
+    /* Process */
+    .steps{counter-reset:step}
+    .step{display:grid; grid-template-columns:56px 1fr; gap:16px; align-items:start}
+    .step+.step{margin-top:18px}
+    .step .dot{width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg, rgba(255,210,63,.25), rgba(94,234,212,.25)); display:grid; place-items:center; font-weight:800}
+
+    /* Work */
+    .work-grid{grid-template-columns:2fr 1fr 1fr}
+    .work-card{position:relative; overflow:hidden}
+    .work-card img{height:220px; width:100%; object-fit:cover; border-radius:12px}
+
+    /* Testimonials */
+    blockquote{margin:0}
+    .quote{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:var(--radius); padding:22px}
+    .quote p{font-size:1.05rem}
+    .quote footer{color:var(--muted)}
+
+    /* CTA */
+    .cta{padding:64px 0 86px}
+    .cta-box{background:linear-gradient(180deg, rgba(255,210,63,.08), rgba(94,234,212,.08)); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; text-align:center}
+
+    /* Footer */
+    footer{padding:48px 0 60px; border-top:1px solid var(--border); color:var(--muted)}
+    .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:20px}
+    .foot-grid h4{margin:0 0 10px; color:var(--text)}
+    .foot-grid a{display:block; padding:.25rem 0; color:var(--muted)}
+    .made{margin-top:20px; font-size:.9rem}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr; padding-top:12px}
+      .logos{grid-template-columns:repeat(3,1fr)}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .work-grid{grid-template-columns:1fr 1fr}
+      .foot-grid{grid-template-columns:1fr 1fr 1fr}
+      nav ul{display:none}
+      .mobile-toggle{display:inline-flex; border:1px solid var(--border); background:transparent; color:var(--text); padding:.5rem .7rem; border-radius:10px}
+      .mobile-open nav ul{display:flex; position:absolute; top:64px; left:20px; right:20px; background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:10px; flex-direction:column}
+    }
+    @media (max-width: 620px){
+      .grid-3{grid-template-columns:1fr}
+      .work-grid{grid-template-columns:1fr}
+      .foot-grid{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">
+        <span class="logo-mark"></span>
+        <span>AdQure‑style Digital</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn ghost" href="#contact">Get a Quote</a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow badge">Your Digital Marketing Companion</div>
+        <h1>Data‑driven growth marketing for consultants & service brands</h1>
+        <p class="lead">We blend brand strategy, SEO, performance ads, and conversion‑focused content to turn attention into predictable revenue.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contact">Book Free Consultation →</a>
+          <a class="btn ghost" href="#work">See Case Studies</a>
+        </div>
+        <div class="hero-card" style="margin-top:24px">
+          <div class="icon">📈</div>
+          <div>
+            <div class="kpi">3.6x <sub>avg ROAS over 6 months</sub></div>
+            <div class="kpi">+142% <sub>organic traffic in 90 days</sub></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img alt="Marketing dashboard" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" style="border-radius:20px; border:1px solid var(--border); box-shadow:var(--shadow)">
+      </div>
+    </div>
+
+    <div class="container trust">
+      <p>Trusted by teams at</p>
+      <div class="logos">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+1">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+2">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+3">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+4">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+5">
+        <img alt="Logo" src="https://dummyimage.com/200x60/ffffff/000000&text=Client+6">
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services built to grow revenue</h2>
+        <a class="btn ghost" href="#contact">Start a project</a>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Brand & Strategy</h3>
+          <p>Positioning, ICP research, messaging playbooks, and funnel strategy to align your offer with market demand.</p>
+          <ul>
+            <li>Brand voice & story</li>
+            <li>Value propositions</li>
+            <li>Offer architecture</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>SEO & Content</h3>
+          <p>Technical fixes + content engines that win snippets and compound traffic.</p>
+          <ul>
+            <li>Site audits & on‑page</li>
+            <li>Editorial calendar</li>
+            <li>Conversion content</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>PPC & Performance</h3>
+          <p>Search, social, and retargeting with ruthless A/B testing and clean attribution.</p>
+          <ul>
+            <li>Google & Meta ads</li>
+            <li>Landing pages & CRO</li>
+            <li>Analytics & dashboards</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>How we work</h2>
+      </div>
+      <div class="card steps">
+        <div class="step">
+          <div class="dot">1</div>
+          <div>
+            <h3>Discovery & Goals</h3>
+            <p>We align on outcomes, audiences, and constraints. Expect a clear growth hypothesis and a 90‑day plan.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <div>
+            <h3>Foundations</h3>
+            <p>Tracking, pixels, and baselines set. We fix blockers and ship a fast, SEO‑friendly landing experience.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <div>
+            <h3>Scale & Optimize</h3>
+            <p>Weekly experiments across ads, content, and CRO. Clear reporting on what moves revenue—not vanity metrics.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <a class="btn ghost" href="#contact">Request full deck</a>
+      </div>
+      <div class="grid work-grid">
+        <article class="card work-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Case study 1">
+          <h3>Fintech SEO Migration</h3>
+          <p>+118% organic in 4 months after a full technical rebuild and content hub strategy.</p>
+        </article>
+        <article class="card work-card">
+          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" alt="Case study 2">
+          <h3>Healthcare Lead Gen</h3>
+          <p>3.1x ROAS scaling search + paid social with high‑intent landing pages.</p>
+        </article>
+        <article class="card work-card">
+          <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=1200&auto=format&fit=crop" alt="Case study 3">
+          <h3>Education Funnel</h3>
+          <p>41% CPL reduction via offer testing and email automation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>Happy clients</h2></div>
+      <div class="grid grid-3">
+        <figure class="quote">
+          <blockquote>
+            <p>“They turned our marketing into a predictable pipeline. Clear reporting, fast iterations, real results.”</p>
+          </blockquote>
+          <footer>— CEO, SaaS</footer>
+        </figure>
+        <figure class="quote">
+          <blockquote>
+            <p>“From strategy to execution, the team delivered beyond expectations. Our CPA keeps dropping.”</p>
+          </blockquote>
+          <footer>— Head of Growth, Healthcare</footer>
+        </figure>
+        <figure class="quote">
+          <blockquote>
+            <p>“SEO foundations and content system were spot on. Traffic doubled without paid.”</p>
+          </blockquote>
+          <footer>— Founder, Fintech</footer>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="about">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to grow smarter?</h2>
+        <p class="lead">Tell us about your goals, and we’ll map a 90‑day plan you can implement with or without us.</p>
+        <div style="margin-top:14px">
+          <a class="btn" href="#contact">Get your plan →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head"><h2>Let’s talk</h2></div>
+      <div class="grid" style="grid-template-columns:1.2fr .8fr; gap:22px">
+        <form class="card" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch.'); this.reset();">
+          <label>Full name<br>
+            <input required name="name" placeholder="Jane Doe" />
+          </label>
+          <label>Email<br>
+            <input required type="email" name="email" placeholder="jane@company.com" />
+          </label>
+          <label>Company<br>
+            <input name="company" placeholder="Acme Inc." />
+          </label>
+          <label>What do you need help with?<br>
+            <textarea rows="5" name="message" placeholder="SEO, ads, content…"></textarea>
+          </label>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+        <div class="card">
+          <h3>Why teams choose us</h3>
+          <ul>
+            <li>Clear strategy with measurable milestones</li>
+            <li>Hands‑on execution with fast iterations</li>
+            <li>Transparent reporting and dashboards</li>
+          </ul>
+          <h3 style="margin-top:14px">Contact</h3>
+          <p class="muted">New Delhi • Remote‑first</p>
+          <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="margin-bottom:10px"><span class="logo-mark"></span><span>AdQure‑style Digital</span></div>
+          <p class="muted">We help consultants and service brands grow with data‑driven marketing.</p>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="#">Blog</a>
+          <a href="#">Guides</a>
+          <a href="#">Case Studies</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+      <div class="made">© <span id="y"></span> Your Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <style>
+    /* form elements */
+    input, textarea{width:100%; margin:.35rem 0 1rem; padding:.9rem 1rem; background:#0c1530; color:var(--text); border:1px solid var(--border); border-radius:12px}
+    input::placeholder, textarea::placeholder{color:#7081aa}
+    ul{margin:.5rem 0 0 1.1rem}
+    .muted{color:var(--muted)}
+  </style>
+
+  <script>
+    // mobile nav
+    const toggle = document.querySelector('.mobile-toggle');
+    toggle?.addEventListener('click', () => document.body.classList.toggle('mobile-open'));
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
